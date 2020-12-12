@@ -29,6 +29,3 @@ If you find this work or code useful for your research, please cite:
   year={2019}
 }
 ```
-
-## Permission and Disclaimer
-This code is only for non-commercial purposes. As covered by the ADOBE IMAGE DATASET LICENSE AGREEMENT, the trained models included in this repository can only be used/distributed for non-commercial purposes. Anyone who violates this rule will be at his/her own risk.
