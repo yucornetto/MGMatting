@@ -1,7 +1,7 @@
 # MG Matting
 
 <p align="center">
-  <img src="teaser.png" width="350" title="Teaser Image"/>
+  <img src="teaser.png" width="1050" title="Teaser Image"/>
 </p>
 
 This repository includes the official project of Mask Guided (MG) Matting, presented in our paper:
