@@ -14,7 +14,7 @@ This repository includes the official project of Mask Guided (MG) Matting, prese
 
 ## Highlights
 - **Trimap-free:** IndexNet Matting only deals with the upsampling stage but exhibits at least 16.1% relative improvements, compared to the Deep Matting baseline;
-- **State-of-the-art Performance:** Trained on the public synthetic dataset Composition-1k only, MG Matting achives amazing performance on both synthetic and real-world data;
+- **State-of-the-art Performance:** MG Matting is trained on the public synthetic dataset Composition-1k only without any addtional dataset as other trimap-free methods do, MG Matting can handle high-resolution (e.g. 2k) images achives amazing performance on both synthetic and real-world data;
 - **Robust on real-world cases:** This framework also includes our re-implementation of Deep Matting and the pretrained model presented in the Adobe's CVPR17 paper.
    
 
