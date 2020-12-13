@@ -4,6 +4,10 @@
   <img src="teaser.png" width="1050" title="Teaser Image"/>
 </p>
 
+<video width="320" height="240" controls>
+  <source src="video_demo1.mp4" type="video/mp4">
+</video>
+
 This repository includes the official project of Mask Guided (MG) Matting, presented in our paper:
 
 **[Mask Guided Matting via Progressive Refinement Network](https://arxiv.org/abs/1908.00672)**
