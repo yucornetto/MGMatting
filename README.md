@@ -22,9 +22,9 @@ Inference demo, real-world portrait benchmark shall be released soon. Before tha
 ## Dataset
 In our experiments, **only Composition-1k training set is used to train the model**. And the obtained model is evaluaed on three dataset: Composition-1k, Distinction-646, and our real-world portrait dataset.
 
-**For Compsition-1k**, please contact Brian Price (bprice@adobe.com) requesting for the dataset. And please refer to GCA Matting(https://github.com/Yaoyi-Li/GCA-Matting) for dataset preparation.
+**For Compsition-1k**, please contact Brian Price (bprice@adobe.com) requesting for the dataset. And please refer to [GCA Matting](https://github.com/Yaoyi-Li/GCA-Matting) for dataset preparation.
 
-**For Distinction-646**, please refer to HAttMatting(https://github.com/wukaoliu/CVPR2020-HAttMatting) for the dataset.
+**For Distinction-646**, please refer to [HAttMatting](https://github.com/wukaoliu/CVPR2020-HAttMatting) for the dataset.
 
 **Our real-world portrait dataset** shall be released to public soon.
 
