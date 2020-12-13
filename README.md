@@ -4,10 +4,6 @@
   <img src="teaser.png" width="1050" title="Teaser Image"/>
 </p>
 
-<video width="320" height="240" controls>
-  <source src="video_demo1.mp4" type="video/mp4">
-</video>
-
 This repository includes the official project of Mask Guided (MG) Matting, presented in our paper:
 
 **[Mask Guided Matting via Progressive Refinement Network](https://arxiv.org/abs/1908.00672)**
@@ -24,7 +20,7 @@ This repository includes the official project of Mask Guided (MG) Matting, prese
 Inference demo, real-world portrait benchmark shall be released soon. Before that, if you want to test your model on the real-world portrait benchmark or compare results with MG Matting, feel free to contact Qihang Yu (yucornetto@gmail.com).
 
 ## Citation
-If you find this work or code useful for your research, please cite:
+If you find this work or code useful for your research, please use the following BibTex entry:
 ```
 @inproceedings{hao2019indexnet,
   title={Indices Matter: Learning to Index for Deep Image Matting},
