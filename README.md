@@ -28,6 +28,14 @@ In our experiments, **only Composition-1k training set is used to train the mode
 
 **Our real-world portrait dataset** shall be released to public soon.
 
+## Models
+The model for reprocuding our results on synthetic dataset can be downloaded at [this link](https://drive.google.com/file/d/1T_oiKDE_biWf2kqexMEN7ObWqtXAzbB1/view?usp=sharing). The model for real-world cases shall be released soon.
+
+| Model Name  |     File Size   | SAD | MSE | Grad | Conn |
+| :------------- |------------:| :-----|----:|----:|----:|
+| MG Matting - TrimapFG  | --mb | 31.5 | 6.8 | 13.5 | 27.3 |
+| MG Matting - Trimap  | --mb | 32.1 | 7.0 | 14.0 | 27.9 |
+
 ## Citation
 If you find this work or code useful for your research, please use the following BibTex entry:
 ```
