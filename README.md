@@ -31,10 +31,10 @@ In our experiments, **only Composition-1k training set is used to train the mode
 ## Citation
 If you find this work or code useful for your research, please use the following BibTex entry:
 ```
-@inproceedings{hao2019indexnet,
-  title={Indices Matter: Learning to Index for Deep Image Matting},
-  author={Lu, Hao and Dai, Yutong and Shen, Chunhua and Xu, Songcen},
-  booktitle={Proc. IEEE/CVF International Conference on Computer Vision (ICCV)},
-  year={2019}
+@article{yu2020mask,
+  author  = {Yu, Qihang and Zhang, Jianming and Zhang, He and Wang, Yilin and Lin, Zhe and Xu, Ning and Bai, Yutong and Yuille, Alan},
+  title   = {Mask Guided Matting via Progressive Refinement Network},
+  journal = {arXiv preprint arXiv:2010.05981},
+  year    = {2020}
 }
 ```
