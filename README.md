@@ -20,13 +20,13 @@ This repository includes the official project of Mask Guided (MG) Matting, prese
 Inference demo, real-world portrait benchmark shall be released soon. Before that, if you want to test your model on the real-world portrait benchmark or compare results with MG Matting, feel free to contact Qihang Yu (yucornetto@gmail.com).
 
 ## Dataset
-In our experiments, only Composition-1k training set is used to train the model. And the obtained model is evaluaed on three dataset: Composition-1k, Distinction-646, and our real-world portrait dataset.
+In our experiments, **only Composition-1k training set is used to train the model**. And the obtained model is evaluaed on three dataset: Composition-1k, Distinction-646, and our real-world portrait dataset.
 
-For Compsition-1k, please contact Brian Price (bprice@adobe.com) requesting for the dataset. And please refer to GCA Matting(https://github.com/Yaoyi-Li/GCA-Matting) for dataset preparation.
+**For Compsition-1k**, please contact Brian Price (bprice@adobe.com) requesting for the dataset. And please refer to GCA Matting(https://github.com/Yaoyi-Li/GCA-Matting) for dataset preparation.
 
-For Distinction-646, please refer to HAttMatting(https://github.com/wukaoliu/CVPR2020-HAttMatting) for the dataset.
+**For Distinction-646**, please refer to HAttMatting(https://github.com/wukaoliu/CVPR2020-HAttMatting) for the dataset.
 
-Our real-world portrait dataset shall be released to public soon.
+**Our real-world portrait dataset** shall be released to public soon.
 
 ## Citation
 If you find this work or code useful for your research, please use the following BibTex entry:
