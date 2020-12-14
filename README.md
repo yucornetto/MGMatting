@@ -19,6 +19,12 @@ This repository includes the official project of Mask Guided (MG) Matting, prese
 ## TODO
 Inference demo, real-world portrait benchmark shall be released soon. Before that, if you want to test your model on the real-world portrait benchmark or compare results with MG Matting, feel free to contact Qihang Yu (yucornetto@gmail.com).
 
+
+## Visualization Examples
+We provide examples for visually comparing MG Matting with other matting methods. We also note that our model can even potentially deal with video matting.
+
+In addition, we also use an internal portrait dataset consisting of 3000 images to train an even stronger MG Matting model, and construct a fully automatic matting system based on it. We provide visually comparison of this automatic matting system with other state-of-the-art matting methods including [MODNet](https://github.com/ZHKKKe/MODNet) and commercial softwares such as [Remove.bg](https://www.remove.bg/) and Adobe PhotoShop.
+
 ## Dataset
 In our experiments, **only Composition-1k training set is used to train the model**. And the obtained model is evaluaed on three dataset: Composition-1k, Distinction-646, and our real-world portrait dataset.
 
