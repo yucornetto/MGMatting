@@ -40,7 +40,7 @@ In addition, we also use an internal portrait dataset consisting of 4395 images 
 ***Please refer to [RESULT.md](result/RESULT.md) for more visualization results.***
 
 ## Dataset
-In our experiments, **only Composition-1k training set is used to train the model**. And the obtained model is evaluaed on three dataset: Composition-1k, Distinction-646, and our real-world portrait dataset.
+In our experiments, **only Composition-1k training set is used to train the model**. And the obtained model is evaluated on three dataset: Composition-1k, Distinction-646, and our real-world portrait dataset.
 
 **For Compsition-1k**, please contact Brian Price (bprice@adobe.com) requesting for the dataset. And please refer to [GCA Matting](https://github.com/Yaoyi-Li/GCA-Matting) for dataset preparation.
 
