@@ -24,7 +24,7 @@ This repository includes the official project of Mask Guided (MG) Matting, prese
 - **No Additional Training Data:** MG Matting is trained only with the widely-used publicly avaliable synthetic dataset Composition-1k, and shows great performance on both synthetic and real-world benchmarks.
 
 ## News
-- 12 Dec 2020: Release [Arxiv version of paper](https://arxiv.org/abs/2012.06722) and [visualizations of sample images and videos](result/RESULT.md).
+- 15 Dec 2020: Release [Arxiv version of paper](https://arxiv.org/abs/2012.06722) and [visualizations of sample images and videos](result/RESULT.md).
 
 ## TODO
 - More visually comparisons of fully automatic matting systems including MG Matting, [MODNet](https://github.com/ZHKKKe/MODNet), and Commercial Softwares Photoshop.
