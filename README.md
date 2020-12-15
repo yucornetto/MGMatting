@@ -14,7 +14,7 @@ This repository includes the official project of Mask Guided (MG) Matting, prese
 - **No Additional Training Data:** MG Matting is trained only with the widely-used publicly avaliable synthetic dataset Composition-1k, and shows great performance on both synthetic and real-world benchmarks.
 
 ## News
-- 12 Dec 2020: Release [Arxiv version of paper](https://arxiv.org/pdf/2011.11961.pdf) and [visualizations of sample images and videos](demo/DEMO.md).
+- 12 Dec 2020: Release [Arxiv version of paper](https://arxiv.org/abs/2012.06722) and [visualizations of sample images and videos](result/RESULT.md).
 
 ## TODO
 Inference demo, real-world portrait benchmark shall be released soon. Before that, if you want to test your model on the real-world portrait benchmark or compare results with MG Matting, feel free to contact Qihang Yu (yucornetto@gmail.com).
@@ -23,9 +23,9 @@ Inference demo, real-world portrait benchmark shall be released soon. Before tha
 ## Visualization Examples
 We provide examples for visually comparing MG Matting with other matting methods. We also note that our model can even potentially deal with video matting. 
 
-In addition, we also use an internal portrait dataset consisting of 4395 images to train an even stronger MG Matting model, and construct a fully automatic matting system based on it. We provide visually comparison of this automatic matting system with other latest matting methods including [MODNet](https://github.com/ZHKKKe/MODNet) and commercial softwares such as [Remove.bg](https://www.remove.bg/) and Adobe PhotoShop.
+In addition, we also use an internal portrait dataset consisting of 4395 images to train an even stronger MG Matting model, and construct a fully automatic matting system based on it. We provide visually comparison of this automatic matting system with other latest matting methods including [MODNet](https://github.com/ZHKKKe/MODNet) and commercial softwares such as Adobe PhotoShop.
 
-Please refer to [DEMO.md](demo/DEMO.md) for details.
+Please refer to [RESULT.md](result/RESULT.md) for details.
 
 ## Dataset
 In our experiments, **only Composition-1k training set is used to train the model**. And the obtained model is evaluaed on three dataset: Composition-1k, Distinction-646, and our real-world portrait dataset.
