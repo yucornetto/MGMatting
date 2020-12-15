@@ -35,7 +35,7 @@ We provide examples for visually comparing MG Matting with other matting methods
 
 In addition, we also use an internal portrait dataset consisting of 4395 images to train an even stronger MG Matting model, and construct a fully automatic matting system based on it. We provide visually comparison of this automatic matting system with other latest matting methods including [MODNet](https://github.com/ZHKKKe/MODNet) and commercial softwares such as Adobe PhotoShop.
 
-**Please refer to [RESULT.md](result/RESULT.md) for more visualization results.**
+***Please refer to [RESULT.md](result/RESULT.md) for more visualization results.***
 
 ## Dataset
 In our experiments, **only Composition-1k training set is used to train the model**. And the obtained model is evaluaed on three dataset: Composition-1k, Distinction-646, and our real-world portrait dataset.
