@@ -21,9 +21,11 @@ Inference demo, real-world portrait benchmark shall be released soon. Before tha
 
 
 ## Visualization Examples
-We provide examples for visually comparing MG Matting with other matting methods. We also note that our model can even potentially deal with video matting.
+We provide examples for visually comparing MG Matting with other matting methods. We also note that our model can even potentially deal with video matting. 
 
 In addition, we also use an internal portrait dataset consisting of 3000 images to train an even stronger MG Matting model, and construct a fully automatic matting system based on it. We provide visually comparison of this automatic matting system with other state-of-the-art matting methods including [MODNet](https://github.com/ZHKKKe/MODNet) and commercial softwares such as [Remove.bg](https://www.remove.bg/) and Adobe PhotoShop.
+
+Please refer to [DEMO](demo/DEMO.md)
 
 ## Dataset
 In our experiments, **only Composition-1k training set is used to train the model**. And the obtained model is evaluaed on three dataset: Composition-1k, Distinction-646, and our real-world portrait dataset.
@@ -35,12 +37,14 @@ In our experiments, **only Composition-1k training set is used to train the mode
 **Our real-world portrait dataset** shall be released to public soon.
 
 ## Models
-The model for reprocuding our results on synthetic dataset can be downloaded at [this link](https://drive.google.com/file/d/1T_oiKDE_biWf2kqexMEN7ObWqtXAzbB1/view?usp=sharing). The model for real-world cases shall be released soon.
+The pre-trained model for reprocuding our results will be released soon.
 
-| Model Name  |     File Size   | SAD | MSE | Grad | Conn |
-| :------------- |------------:| :-----|----:|----:|----:|
-| MG Matting - TrimapFG  | --mb | 31.5 | 6.8 | 13.5 | 27.3 |
-| MG Matting - Trimap  | --mb | 32.1 | 7.0 | 14.0 | 27.9 |
+Results on Composition-1k test set:
+
+| Model Name  | SAD | MSE | Grad | Conn |
+| :------------- | :-----|----:|----:|----:|
+| MG Matting - TrimapFG  | 31.5 | 6.8 | 13.5 | 27.3 |
+| MG Matting - Trimap  | 32.1 | 7.0 | 14.0 | 27.9 |
 
 ## Citation
 If you find this work or code useful for your research, please use the following BibTex entry:
@@ -52,3 +56,6 @@ If you find this work or code useful for your research, please use the following
   year    = {2020}
 }
 ```
+
+## Lisence
+Research only
