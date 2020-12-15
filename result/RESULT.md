@@ -1,4 +1,4 @@
-### DEMO
+# DEMO
 We provide visual samples and comparison with Internet Images here.
 
 ## Image Matting
