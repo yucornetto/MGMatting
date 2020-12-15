@@ -7,7 +7,7 @@ We compare MG Matting with other trimap-based/free methods, including [Late Fusi
 Please refer to [IMAGE.md](IMAGE.md) for details.
 
 ## Fully Automatic Matting System
-We further train MG Matting with an internal portrait matting dataset consisting of 4395 samples, and combine it with a base segmentation model to obtain a fully automatic matting system. We compare this system to latest trimap-free matting system [MODNet](https://github.com/ZHKKKe/MODNet) and also commercial software Photoshop 2021.
+**We further train MG Matting with an internal portrait matting dataset consisting of 4395 samples, and combine it with a base segmentation model to obtain a fully automatic matting system**. We compare this system to latest trimap-free matting system [MODNet](https://github.com/ZHKKKe/MODNet) and also commercial software Photoshop 2021.
 
 Please refer to [SYSTEM.md](SYSTEM.md) for details.
 
