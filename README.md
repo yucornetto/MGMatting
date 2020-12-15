@@ -18,6 +18,9 @@ This repository includes the official project of Mask Guided (MG) Matting, prese
 <img src="teaser_ours.png" width="100%">
 
 - **Foreground Color Prediction:** MG Matting predicts the foreground color besides alpha matte, we notice and address the inaccuracy of foreground annotations in Composition-1k by Random Alpha Blending;
+
+<img src="color.png" width="100%">
+
 - **No Additional Training Data:** MG Matting is trained only with the widely-used publicly avaliable synthetic dataset Composition-1k, and shows great performance on both synthetic and real-world benchmarks.
 
 ## News
@@ -32,7 +35,7 @@ We provide examples for visually comparing MG Matting with other matting methods
 
 In addition, we also use an internal portrait dataset consisting of 4395 images to train an even stronger MG Matting model, and construct a fully automatic matting system based on it. We provide visually comparison of this automatic matting system with other latest matting methods including [MODNet](https://github.com/ZHKKKe/MODNet) and commercial softwares such as Adobe PhotoShop.
 
-Please refer to [RESULT.md](result/RESULT.md) for details.
+**Please refer to [RESULT.md](result/RESULT.md) for more visualization results.**
 
 ## Dataset
 In our experiments, **only Composition-1k training set is used to train the model**. And the obtained model is evaluaed on three dataset: Composition-1k, Distinction-646, and our real-world portrait dataset.
