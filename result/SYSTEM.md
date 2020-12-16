@@ -16,3 +16,6 @@ We further train MG Matting with an internal portrait matting dataset consisting
 <p align="center">
   <img src="system_4.png" width="1050" title="System Comparison"/>
 </p>
+<p align="center">
+  <img src="system_5.png" width="1050" title="System Comparison"/>
+</p>
