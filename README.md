@@ -29,7 +29,7 @@ This repository includes the official project of Mask Guided (MG) Matting, prese
 - [Fully Automatic Matting System](result/SYSTEM.md)
 - [Image Matting Results](result/IMAGE.md)
 
-**We note that MG Matting, though not utilizing temporal information yet, can potentially produce great results on videos. Please refer to the following links for video demos.**
+**We note that MG Matting, though not utilizing temporal information yet, can also potentially produce great results on videos. Please refer to the following links for video demos.**
 <p align="center">
   <a href="https://youtu.be/CB5pLIbRT28">Video Demo 1</a> |
   <a href="https://youtu.be/ldlvGGWTbFI">Video Demo 2</a> |
