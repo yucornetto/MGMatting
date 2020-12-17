@@ -19,15 +19,15 @@ This repository includes the official project of Mask Guided (MG) Matting, prese
 </p>
 
 
-**Check out more visual results and comparisons of MG Matting to other fully automatic matting systems and matting models. Please note that image matting results contains methods (except LFM) trained on public Composition-1k only, while in fully automatic matting system methods are trained with different internal datasets.**
+**Check out more visual results and comparisons of MG Matting to other matting methods. We provide visual comparison in two settings, where the first one MG Matting and competitors are trained on Composition-1k only (except LFM), and another one all methods are trained with different internal datasets.**
 
-- [Google Drive - Fully Automatic Matting System](https://drive.google.com/file/d/1fTEWWDcxxENAcux8wiESDmtG3AxsZevP/view?usp=sharing)
-- [Google Drive - Image Matting Results](https://drive.google.com/file/d/1kvkMQArxK_4HcxVxp7NPlNUdNE6I9sLa/view?usp=sharing) 
+- [Google Drive - Extra Training](https://drive.google.com/file/d/1fTEWWDcxxENAcux8wiESDmtG3AxsZevP/view?usp=sharing)
+- [Google Drive - Composition-1k Training](https://drive.google.com/file/d/1kvkMQArxK_4HcxVxp7NPlNUdNE6I9sLa/view?usp=sharing) 
 
 <br>**or preview them at**
 
-- [Fully Automatic Matting System](result/SYSTEM.md)
-- [Image Matting Results](result/IMAGE.md)
+- [Extra Training](result/SYSTEM.md)
+- [Composition-1k Training](result/IMAGE.md)
 
 **We note that MG Matting, though not utilizing temporal information yet, can also potentially produce great results on videos. Please refer to the following links for video demos.**
 <p align="center">
