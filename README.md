@@ -18,6 +18,7 @@ This repository includes the official project of Mask Guided (MG) Matting, prese
   <img src="teaser_3.jpg" width="100%" title="Teaser Image 3"/>
 </p>
 
+MODNet refers to recently released trimap free matting method `https://github.com/ZHKKKe/MODNet` 
 
 **Check out more visual results and comparisons of MG Matting to other matting methods. We provide visual comparison in two settings, where the first one MG Matting and competitors are trained on Composition-1k only (except LFM), and another one all methods are trained with different internal datasets.**
 
