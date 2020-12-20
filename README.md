@@ -78,10 +78,10 @@ In our experiments, **only Composition-1k training set is used to train the mode
 If you find this work or code useful for your research, please use the following BibTex entry:
 ```
 @article{yu2020mask,
-  author  = {Yu, Qihang and Zhang, Jianming and Zhang, He and Wang, Yilin and Lin, Zhe and Xu, Ning and Bai, Yutong and Yuille, Alan},
-  title   = {Mask Guided Matting via Progressive Refinement Network},
-  journal = {arXiv preprint arXiv:2012.06722},
-  year    = {2020}
+  title={Mask Guided Matting via Progressive Refinement Network},
+  author={Yu, Qihang and Zhang, Jianming and Zhang, He and Wang, Yilin and Lin, Zhe and Xu, Ning and Bai, Yutong and Yuille, Alan},
+  journal={arXiv preprint arXiv:2012.06722},
+  year={2020}
 }
 ```
 
