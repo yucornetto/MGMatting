@@ -56,10 +56,6 @@ MODNet refers to recently released trimap free matting method `https://github.co
 
 - 15 Dec 2020: Release [Arxiv version of paper](https://arxiv.org/abs/2012.06722) and [visualizations of sample images and videos](result/RESULT.md).
 
-## TODO
-- Inference demo, real-world portrait benchmark shall be released soon. Before that, if you want to test your model on the real-world portrait benchmark or compare results with MG Matting, feel free to contact Qihang Yu (yucornetto@gmail.com).
-
-
 ## Visualization Examples
 We provide examples for visually comparing MG Matting with other matting methods. We also note that our model can even potentially deal with video matting. 
 
