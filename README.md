@@ -84,6 +84,7 @@ If you find this work or code useful for your research, please use the following
 ```
 ## Acknowledgment
 [GCA-Matting](https://github.com/Yaoyi-Li/GCA-Matting)
+
 [FBA Matting](https://github.com/MarcoForte/FBA_Matting)
 
 ## Lisence
