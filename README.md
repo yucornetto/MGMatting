@@ -50,7 +50,7 @@ MODNet refers to recently released trimap free matting method `https://github.co
 - **No Additional Training Data:** MG Matting is trained only with the widely-used publicly avaliable synthetic dataset Composition-1k, and shows great performance on both synthetic and real-world benchmarks.
 
 ## News
-- 22 Mar 2021: Our real-world portrait dataset is now publicly avaliable at [here](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/qyu13_jh_edu/EXVd6ga9f9xBjkDv6nPMDtcB_rYaJhnkkS6XGvmzc_6Rfw?e=OzxerN). Training Codes and models are released, please refer to [README.md](code-base/README.md).
+- 22 Mar 2021: Our real-world portrait dataset is now publicly avaliable at [here](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/qyu13_jh_edu/EXVd6ga9f9xBjkDv6nPMDtcB_rYaJhnkkS6XGvmzc_6Rfw). Training Codes and models are released, please refer to [README.md](code-base/README.md).
 
 - 15 Dec 2020: Visually comparisons of different fully automatic matting systems are avaliable in [SYSTEM.md](result/SYSTEM.md).
 
@@ -70,7 +70,7 @@ In our experiments, **only Composition-1k training set is used to train the mode
 
 **For Distinction-646**, please refer to [HAttMatting](https://github.com/wukaoliu/CVPR2020-HAttMatting) for the dataset.
 
-**Our real-world portrait dataset**, it is available to public and you can download it at [this link](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/qyu13_jh_edu/EXVd6ga9f9xBjkDv6nPMDtcB_rYaJhnkkS6XGvmzc_6Rfw?e=OzxerN).
+**Our real-world portrait dataset**, it is available to public and you can download it at [this link](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/qyu13_jh_edu/EXVd6ga9f9xBjkDv6nPMDtcB_rYaJhnkkS6XGvmzc_6Rfw).
 
 ## Citation
 If you find this work or code useful for your research, please use the following BibTex entry:
