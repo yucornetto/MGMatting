@@ -11,7 +11,7 @@ Code and models for the paper [Mask Guided Matting via Progressive Refinement Ne
 - easydict
 - pprint
 
-For ImageNet pretrained weight, please refer to [GCA-Matting](https://github.com/Yaoyi-Li/GCA-Matting).
+For ImageNet pretrained weight and DIM dataset preparation, please refer to [GCA-Matting](https://github.com/Yaoyi-Li/GCA-Matting).
 
 ### Training on DIM dataset
 Please modify the data path in config file (e.g. config/MGMatting-DIM.toml) accordingly, and start training using the following command:
