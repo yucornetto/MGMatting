@@ -1,4 +1,6 @@
-This software is for non-commercial purposes
+The project can only be redistributed under a Creative Commons Attribution-NonCommercial 2.0 Generic (CC BY-NC 2.0) license; the terms of which are available at https://creativecommons.org/licenses/by-nc/2.0/deed.en_GB.
+
+This software is for non-commercial purposes only. 
 
 Copyright (c) 2020 Qihang Yu All rights reserved.
 
