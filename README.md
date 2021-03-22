@@ -56,6 +56,7 @@ If you find this work or code useful for your research, please use the following
 [FBA Matting](https://github.com/MarcoForte/FBA_Matting)
 
 ## Lisence
-Research only
-Can only be redistributed under a Creative Commons Attribution-NonCommercial 2.0
+Research only;
+
+The Can only be redistributed under a Creative Commons Attribution-NonCommercial 2.0
 Generic (CC BY-NC 2.0) license; the terms of which are available at https://creativecommons.org/licenses/by-nc/2.0/deed.en_GB.
