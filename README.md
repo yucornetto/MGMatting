@@ -57,3 +57,5 @@ If you find this work or code useful for your research, please use the following
 
 ## Lisence
 Research only
+
+Attached is a dataset license that gives the student permission to redistribute under CC BY-NC 2.0
