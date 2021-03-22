@@ -40,3 +40,5 @@ which will give the MSE/SAD scores under two settings: Whole Image (measured aco
 - Model Zoo providing pretrained models and demo purposes.
 
 - Realworld augmentations.
+
+- Foreground prediction and random alpha blending (RAB).
