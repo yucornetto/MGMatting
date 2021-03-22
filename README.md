@@ -57,5 +57,5 @@ If you find this work or code useful for your research, please use the following
 
 ## Lisence
 Research only
-
-Attached is a dataset license that gives the student permission to redistribute under CC BY-NC 2.0
+Can only be redistributed under a Creative Commons Attribution-NonCommercial 2.0
+Generic (CC BY-NC 2.0) license; the terms of which are available at https://creativecommons.org/licenses/by-nc/2.0/deed.en_GB.
