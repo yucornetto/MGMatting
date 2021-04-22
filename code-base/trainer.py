@@ -282,80 +282,81 @@ class Trainer(object):
 
 
             """===== TEST ====="""
-            if ((step % self.train_config.val_step) == 0 or step == self.train_config.total_step):# and step > start:
-                self.G.eval()
-                test_loss = 0
-                log_info = ""
+            if self.train_config.val_step > 0:
+                if ((step % self.train_config.val_step) == 0 or step == self.train_config.total_step):# and step > start:
+                    self.G.eval()
+                    test_loss = 0
+                    log_info = ""
 
-                self.test_loss_dict['mse'] = 0
-                self.test_loss_dict['sad'] = 0
-                for loss_key in self.loss_dict.keys():
-                    if loss_key in self.test_loss_dict and self.loss_dict[loss_key] is not None:
-                        self.test_loss_dict[loss_key] = 0
+                    self.test_loss_dict['mse'] = 0
+                    self.test_loss_dict['sad'] = 0
+                    for loss_key in self.loss_dict.keys():
+                        if loss_key in self.test_loss_dict and self.loss_dict[loss_key] is not None:
+                            self.test_loss_dict[loss_key] = 0
 
-                with torch.no_grad():
-                    for image_dict in self.test_dataloader:
-                        image, alpha, trimap, mask = image_dict['image'], image_dict['alpha'], image_dict['trimap'], image_dict['mask']
-                        alpha_shape = image_dict['alpha_shape']
-                        image = image.cuda()
-                        alpha = alpha.cuda()
-                        trimap = trimap.cuda()
-                        mask = mask.cuda()
+                    with torch.no_grad():
+                        for image_dict in self.test_dataloader:
+                            image, alpha, trimap, mask = image_dict['image'], image_dict['alpha'], image_dict['trimap'], image_dict['mask']
+                            alpha_shape = image_dict['alpha_shape']
+                            image = image.cuda()
+                            alpha = alpha.cuda()
+                            trimap = trimap.cuda()
+                            mask = mask.cuda()
 
-                        pred = self.G(image, mask)
+                            pred = self.G(image, mask)
 
-                        alpha_pred_os1, alpha_pred_os4, alpha_pred_os8 = pred['alpha_os1'], pred['alpha_os4'], pred['alpha_os8']
-                        alpha_pred = alpha_pred_os8.clone().detach()
-                        weight_os4 = utils.get_unknown_tensor_from_pred(alpha_pred, rand_width=CONFIG.model.self_refine_width1, train_mode=False)
-                        alpha_pred[weight_os4>0] = alpha_pred_os4[weight_os4>0]
-                        weight_os1 = utils.get_unknown_tensor_from_pred(alpha_pred, rand_width=CONFIG.model.self_refine_width2, train_mode=False)
-                        alpha_pred[weight_os1>0] = alpha_pred_os1[weight_os1>0] 
-                        
+                            alpha_pred_os1, alpha_pred_os4, alpha_pred_os8 = pred['alpha_os1'], pred['alpha_os4'], pred['alpha_os8']
+                            alpha_pred = alpha_pred_os8.clone().detach()
+                            weight_os4 = utils.get_unknown_tensor_from_pred(alpha_pred, rand_width=CONFIG.model.self_refine_width1, train_mode=False)
+                            alpha_pred[weight_os4>0] = alpha_pred_os4[weight_os4>0]
+                            weight_os1 = utils.get_unknown_tensor_from_pred(alpha_pred, rand_width=CONFIG.model.self_refine_width2, train_mode=False)
+                            alpha_pred[weight_os1>0] = alpha_pred_os1[weight_os1>0] 
+                            
 
-                        h, w = alpha_shape
-                        alpha_pred = alpha_pred[..., :h, :w]
-                        trimap = trimap[..., :h, :w]
-                        
-                        weight = utils.get_unknown_tensor(trimap)
-                        weight[...] = 1
+                            h, w = alpha_shape
+                            alpha_pred = alpha_pred[..., :h, :w]
+                            trimap = trimap[..., :h, :w]
+                            
+                            weight = utils.get_unknown_tensor(trimap)
+                            weight[...] = 1
 
-                        # value of MSE/SAD here is different from test.py and matlab version
-                        self.test_loss_dict['mse'] += self.mse(alpha_pred, alpha, weight)
-                        self.test_loss_dict['sad'] += self.sad(alpha_pred, alpha, weight)
+                            # value of MSE/SAD here is different from test.py and matlab version
+                            self.test_loss_dict['mse'] += self.mse(alpha_pred, alpha, weight)
+                            self.test_loss_dict['sad'] += self.sad(alpha_pred, alpha, weight)
 
-                        if self.train_config.rec_weight > 0:
-                            self.test_loss_dict['rec'] += self.regression_loss(alpha_pred, alpha, weight=weight) \
-                                                          * self.train_config.rec_weight
+                            if self.train_config.rec_weight > 0:
+                                self.test_loss_dict['rec'] += self.regression_loss(alpha_pred, alpha, weight=weight) \
+                                                            * self.train_config.rec_weight
 
-                # reduce losses from GPUs
-                if CONFIG.dist:
-                    self.test_loss_dict = utils.reduce_tensor_dict(self.test_loss_dict, mode='mean')
+                    # reduce losses from GPUs
+                    if CONFIG.dist:
+                        self.test_loss_dict = utils.reduce_tensor_dict(self.test_loss_dict, mode='mean')
 
-                """===== Write Log and Tensorboard ====="""
-                # stdout log
-                for loss_key in self.test_loss_dict.keys():
-                    if self.test_loss_dict[loss_key] is not None:
-                        self.test_loss_dict[loss_key] /= len(self.test_dataloader)
-                        # logging
-                        log_info += loss_key.upper()+": {:.4f} ".format(self.test_loss_dict[loss_key])
-                        self.tb_logger.scalar_summary('Loss_'+loss_key.upper(),
-                                                      self.test_loss_dict[loss_key], step, phase='test')
+                    """===== Write Log and Tensorboard ====="""
+                    # stdout log
+                    for loss_key in self.test_loss_dict.keys():
+                        if self.test_loss_dict[loss_key] is not None:
+                            self.test_loss_dict[loss_key] /= len(self.test_dataloader)
+                            # logging
+                            log_info += loss_key.upper()+": {:.4f} ".format(self.test_loss_dict[loss_key])
+                            self.tb_logger.scalar_summary('Loss_'+loss_key.upper(),
+                                                        self.test_loss_dict[loss_key], step, phase='test')
 
-                        if loss_key in ['rec']:
-                            test_loss += self.test_loss_dict[loss_key]
+                            if loss_key in ['rec']:
+                                test_loss += self.test_loss_dict[loss_key]
 
-                self.logger.info("TEST: LOSS: {:.4f} ".format(test_loss)+log_info)
-                self.tb_logger.scalar_summary('Loss', test_loss, step, phase='test')
+                    self.logger.info("TEST: LOSS: {:.4f} ".format(test_loss)+log_info)
+                    self.tb_logger.scalar_summary('Loss', test_loss, step, phase='test')
 
-                # if self.model_config.trimap_channel == 3:
-                #     trimap = trimap.argmax(dim=1, keepdim=True)
-                # alpha_pred[trimap==2] = 1
-                # alpha_pred[trimap==0] = 0
-                image_set = {'image': (utils.normalize_image(image[-1, ...]).data.cpu().numpy()
-                                       * 255).astype(np.uint8),
-                             'mask': (mask[-1, ...].data.cpu().numpy() * 255).astype(np.uint8),
-                             'alpha': (alpha[-1, ...].data.cpu().numpy() * 255).astype(np.uint8),
-                             'alpha_pred': (alpha_pred[-1, ...].data.cpu().numpy() * 255).astype(np.uint8)}
+                    # if self.model_config.trimap_channel == 3:
+                    #     trimap = trimap.argmax(dim=1, keepdim=True)
+                    # alpha_pred[trimap==2] = 1
+                    # alpha_pred[trimap==0] = 0
+                    image_set = {'image': (utils.normalize_image(image[-1, ...]).data.cpu().numpy()
+                                        * 255).astype(np.uint8),
+                                'mask': (mask[-1, ...].data.cpu().numpy() * 255).astype(np.uint8),
+                                'alpha': (alpha[-1, ...].data.cpu().numpy() * 255).astype(np.uint8),
+                                'alpha_pred': (alpha_pred[-1, ...].data.cpu().numpy() * 255).astype(np.uint8)}
 
                 self.tb_logger.image_summary(image_set, step, phase='test')
 
@@ -367,8 +368,14 @@ class Trainer(object):
                     if self.test_loss_dict['mse'] < self.best_loss:
                         self.best_loss = self.test_loss_dict['mse']
                         self.save_model("best_model", step, loss)
-                
-                torch.cuda.empty_cache()
+            else:
+                """===== Save Model ====="""
+                if (step % self.log_config.checkpoint_step == 0 or step == self.train_config.total_step) \
+                        and CONFIG.local_rank == 0 and (step > start):
+                    self.logger.info('Saving the trained models from step {}...'.format(iter))
+                    self.save_model("latest_model", step, loss)
+            
+            torch.cuda.empty_cache()
 
 
     def save_model(self, checkpoint_name, iter, loss):

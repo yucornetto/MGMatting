@@ -6,6 +6,7 @@ import numpy as np
 from utils.config import CONFIG
 import torch.distributed as dist
 import torch.nn.functional as F
+from skimage.measure import label
 
 def make_dir(target_dir):
     """
@@ -224,7 +225,7 @@ Kernels = [None] + [cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (size, size)) f
 def get_unknown_tensor_from_pred(pred, rand_width=30, train_mode=True):
     ### pred: N, 1 ,H, W 
     N, C, H, W = pred.shape
-    pred = F.interpolate(pred, size=(640,640), mode='nearest')
+
     pred = pred.data.cpu().numpy()
     uncertain_area = np.ones_like(pred, dtype=np.uint8)
     uncertain_area[pred<1.0/255.0] = 0
@@ -242,7 +243,5 @@ def get_unknown_tensor_from_pred(pred, rand_width=30, train_mode=True):
     weight = np.zeros_like(uncertain_area)
     weight[uncertain_area == 1] = 1
     weight = torch.from_numpy(weight).cuda()
-
-    weight = F.interpolate(weight, size=(H,W), mode='nearest')
 
     return weight

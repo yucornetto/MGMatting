@@ -26,10 +26,19 @@ class ToTensor(object):
     """
     Convert ndarrays in sample to Tensors with normalization.
     """
-    def __init__(self, phase="test"):
+    def __init__(self, phase="test", real_world_aug = False):
         self.mean = torch.tensor([0.485, 0.456, 0.406]).view(3,1,1)
         self.std = torch.tensor([0.229, 0.224, 0.225]).view(3,1,1)
         self.phase = phase
+        if real_world_aug:
+            self.RWA = iaa.SomeOf((1, None), [
+                iaa.LinearContrast((0.6, 1.4)),
+                iaa.JpegCompression(compression=(0, 60)),
+                iaa.GaussianBlur(sigma=(0.0, 3.0)),
+                iaa.AdditiveGaussianNoise(scale=(0, 0.1*255))
+            ], random_order=True)
+        else:
+            self.RWA = None
 
     def __call__(self, sample):
         # convert GBR images to RGB
@@ -38,6 +47,14 @@ class ToTensor(object):
         alpha[alpha < 0 ] = 0
         alpha[alpha > 1] = 1
      
+        if self.phase == 'train' and self.RWA is not None and np.random.rand() < 0.5:
+            image[image > 255] = 255
+            image[image < 0] = 0
+            image = np.round(image).astype(np.uint8)
+            image = np.expand_dims(image, axis=0)
+            image = self.RWA(images=image)
+            image = image[0, ...]
+
         # swap color axis because
         # numpy image: H x W x C
         # torch image: C X H X W
@@ -356,14 +373,13 @@ class OriginScale(object):
 
 class GenMask(object):
     def __init__(self):
-        self.erosion_kernels = [None] + [cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (size, size)) for size in range(1,30)]
+        self.erosion_kernels = [None] + [cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (size, size)) for size in range(1,100)]
 
     def __call__(self, sample):
-        alpha_ori = sample['alpha']
-        h, w = alpha_ori.shape
+        alpha = sample['alpha']
+        h, w = alpha.shape
 
-        max_kernel_size = 30
-        alpha = cv2.resize(alpha_ori, (640,640), interpolation=maybe_random_interp(cv2.INTER_NEAREST))
+        max_kernel_size = max(30, int((min(h,w) / 2048) * 30))
 
         ### generate trimap
         fg_mask = (alpha + 1e-5).astype(np.int).astype(np.uint8)
@@ -402,8 +418,7 @@ class GenMask(object):
             seg_mask = cv2.dilate(seg_mask, self.erosion_kernels[np.random.randint(1, max_kernel_size)])
             seg_mask = cv2.erode(seg_mask, self.erosion_kernels[np.random.randint(1, max_kernel_size)])
         
-        seg_mask = cv2.resize(seg_mask, (w,h), interpolation=cv2.INTER_NEAREST)
-        sample['mask'] = seg_mask
+        sample['mask'] = seg_mask.astype(np.float32)
 
         return sample
 
@@ -428,19 +443,16 @@ class CutMask(object):
 
     def __call__(self, sample):
         if np.random.rand() < self.perturb_prob:
-            return sample
+            mask = sample['mask'] # H x W, trimap 0--255, segmask 0--1, alpha 0--1
+            h, w = mask.shape
+            perturb_size_h, perturb_size_w = random.randint(h // 4, h // 2), random.randint(w // 4, w // 2)
+            x = random.randint(0, h - perturb_size_h)
+            y = random.randint(0, w - perturb_size_w)
+            x1 = random.randint(0, h - perturb_size_h)
+            y1 = random.randint(0, w - perturb_size_w)
+            mask[x:x+perturb_size_h, y:y+perturb_size_w] = mask[x1:x1+perturb_size_h, y1:y1+perturb_size_w].copy()
+            sample['mask'] = mask
 
-        mask = sample['mask'] # H x W, trimap 0--255, segmask 0--1, alpha 0--1
-        h, w = mask.shape
-        perturb_size_h, perturb_size_w = random.randint(h // 4, h // 2), random.randint(w // 4, w // 2)
-        x = random.randint(0, h - perturb_size_h)
-        y = random.randint(0, w - perturb_size_w)
-        x1 = random.randint(0, h - perturb_size_h)
-        y1 = random.randint(0, w - perturb_size_w)
-        
-        mask[x:x+perturb_size_h, y:y+perturb_size_w] = mask[x1:x1+perturb_size_h, y1:y1+perturb_size_w].copy()
-        
-        sample['mask'] = mask
         return sample
 
 class DataGenerator(Dataset):
@@ -466,7 +478,7 @@ class DataGenerator(Dataset):
             RandomCrop((self.crop_size, self.crop_size)),
             RandomJitter(),
             Composite(),
-            ToTensor(phase="train") ]
+            ToTensor(phase="train", real_world_aug=CONFIG.data.real_world_aug) ]
 
         test_trans = [ OriginScale(), ToTensor() ]
 

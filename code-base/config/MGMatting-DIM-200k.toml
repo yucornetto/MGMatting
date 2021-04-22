@@ -1,0 +1,54 @@
+# Refer to utils/config.py for definition and options.
+
+version = "MGMatting-DIM-200k"
+dist = true
+
+[model]
+trimap_channel = 3
+mask_channel = 1
+batch_size = 10
+imagenet_pretrain = true
+imagenet_pretrain_path = "pretrain/model_best_resnet34_En_nomixup.pth"
+self_refine_width1 = 30
+self_refine_width2 = 15
+    [model.arch]
+    encoder = "res_shortcut_encoder_29"
+    decoder = "res_shortcut_decoder_22"
+
+[train]
+total_step = 200000
+warmup_step = 10000
+val_step = 10000
+clip_grad = true
+G_lr = 1e-3
+rec_weight = 1.0
+comp_weight = 1.0
+lap_weight = 1.0
+# Uncomment to resume training
+#resume_checkpoint = "latest_model"
+#reset_lr = false
+
+
+[data]
+train_fg = "/export/ccvl12b/qihang/MGMatting/data/Combined_Dataset/Training_set/fg"
+train_alpha = "/export/ccvl12b/qihang/MGMatting/data/Combined_Dataset/Training_set/alpha"
+train_bg = "/export/ccvl12b/qihang/MGMatting/data/train2014/"
+test_merged = "/export/ccvl12b/qihang/MGMatting/data/Combined_Dataset/Test_set/merged"
+test_alpha = "/export/ccvl12b/qihang/MGMatting/data/Combined_Dataset/Test_set/alpha_copy"
+test_trimap = "/export/ccvl12b/qihang/MGMatting/data/Combined_Dataset/Test_set/trimaps"
+workers = 4
+crop_size = 512
+cutmask_prob = 0.25
+augmentation = true
+random_interp = true
+real_world_aug = false
+
+[log]
+tensorboard_path = "./logs/tensorboard"
+tensorboard_step = 100
+tensorboard_image_step = 2000
+logging_path = "./logs/stdout"
+logging_step =  10
+logging_level = "INFO"
+checkpoint_path = "./checkpoints"
+checkpoint_step = 2000
