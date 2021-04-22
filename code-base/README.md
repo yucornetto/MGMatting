@@ -36,7 +36,7 @@ python evaluation.py --pred-dir PATH_TO_SAVED_RESULTS --label-dir PATH_TO_GROUND
 which will give the MSE/SAD scores under two settings: Whole Image (measured acorss the whole image) and Unknown Only (measured in unknown region indicated by trimap only). Please note that these scores are python reimplmentation, and if you want to report scores in your paper, please use the official matlab codes for evaluation.
 
 ### Training on DIM dataset for RWP benchmark
-Please note that we exclude the transparent objects from DIM training set for a better generalization to real-world portrait cases. You can refer to /utils/copy_data.py for details about preparing the training set. Afterwards, you can start training using the following command:
+**Please note that we exclude the transparent objects from DIM training set for a better generalization to real-world portrait cases. You can refer to /utils/copy_data.py for details about preparing the training set.** Afterwards, you can start training using the following command:
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 OMP_NUM_THREADS=2 python -m torch.distributed.launch --nproc_per_node=4 main.py \
 --config=config/MGMatting-RWP-100k.toml
