@@ -14,19 +14,19 @@ Code and models for the paper [Mask Guided Matting via Progressive Refinement Ne
 For ImageNet pretrained weight and DIM dataset preparation, please refer to [GCA-Matting](https://github.com/Yaoyi-Li/GCA-Matting).
 
 ### Training on DIM dataset
-Please modify the data path in config file (e.g. config/MGMatting-DIM.toml) accordingly, and start training using the following command:
+Please modify the data path in config file (e.g. config/MGMatting-DIM-100k.toml) accordingly, and start training using the following command:
 ```
 bash train.sh
 ```
 or
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 OMP_NUM_THREADS=2 python -m torch.distributed.launch --nproc_per_node=4 main.py \
---config=config/MGMatting-DIM.toml
+--config=config/MGMatting-DIM-100k.toml
 ```
 
 ### Testing on DIM dataset
 ```
-CUDA_VISIBLE_DEVICES=0 python infer.py --config PATH_TO_CONFIG --checkpoint PATH_TO_CKPT --image-dir PATH_TO_INPUT_IMG --mask-dir PATH_TO_INPUT_MASK --output PATH_TO_SAVE_RESULTS
+CUDA_VISIBLE_DEVICES=0 python infer.py --config PATH_TO_CONFIG --checkpoint PATH_TO_CKPT --image-dir PATH_TO_INPUT_IMG --mask-dir PATH_TO_INPUT_MASK --output PATH_TO_SAVE_RESULTS --guidance-thres 170
 ```
 
 Afterwards, you can evaluate the results by:
@@ -35,10 +35,26 @@ python evaluation.py --pred-dir PATH_TO_SAVED_RESULTS --label-dir PATH_TO_GROUND
 ```
 which will give the MSE/SAD scores under two settings: Whole Image (measured acorss the whole image) and Unknown Only (measured in unknown region indicated by trimap only). Please note that these scores are python reimplmentation, and if you want to report scores in your paper, please use the official matlab codes for evaluation.
 
+### Training on DIM dataset for RWP benchmark
+Please note that we exclude the transparent objects from DIM training set for a better generalization to real-world portrait cases. You can refer to /utils/copy_data.py for details about preparing the training set. Afterwards, you can start training using the following command:
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3 OMP_NUM_THREADS=2 python -m torch.distributed.launch --nproc_per_node=4 main.py \
+--config=config/MGMatting-RWP-100k.toml
+```
+
+### Testing on RWP benchmark
+```
+CUDA_VISIBLE_DEVICES=0 python infer.py --config PATH_TO_CONFIG --checkpoint PATH_TO_CKPT --image-dir PATH_TO_INPUT_IMG --mask-dir PATH_TO_INPUT_MASK --output PATH_TO_SAVE_RESULTS --image-ext .jpg --mask-ext .png --guidance-thres 128 --post-process
+```
+
+Afterwards, you can evaluate the results by:
+```
+python evaluation_RWP.py --pred-dir PATH_TO_SAVED_RESULTS --label-dir PATH_TO_GROUND_TRUTH --detailmap-dir PATH_TO_DETAILMAP
+```
+which will give the MSE/SAD scores under two settings: Whole Image (measured acorss the whole image) and Detail Only (measured in detail region indicated by detail map only).
+
+### Model Zoo
+
 ### TODO
-
-- Model Zoo providing pretrained models and demo purposes.
-
-- Realworld augmentations.
 
 - Foreground prediction and random alpha blending (RAB).

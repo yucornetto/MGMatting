@@ -32,7 +32,7 @@ def single_inference(model, image_dict, post_process=False):
 
         h, w = alpha_shape
         alpha_pred = alpha_pred[0, 0, ...].data.cpu().numpy()
-        if PP:
+        if post_process:
             alpha_pred = utils.postprocess(alpha_pred)
         alpha_pred = alpha_pred * 255
         alpha_pred = alpha_pred.astype(np.uint8)
@@ -48,6 +48,8 @@ def generator_tensor_dict(image_path, mask_path, args):
     mask = cv2.imread(mask_path, 0)
 
     mask = (mask >= args.guidance_thres).astype(np.float32) ### only keep FG part of trimap
+    
+    #mask = mask.astype(np.float32) / 255.0 ### soft trimap
 
     sample = {'image': image, 'mask': mask, 'alpha_shape': mask.shape}
 
@@ -95,14 +97,15 @@ if __name__ == '__main__':
     print('Torch Version: ', torch.__version__)
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default='config/MGMatting-DIM.toml')
-    parser.add_argument('--checkpoint', type=str, default='checkpoints/MGMatting-DIM.pth',
+    parser.add_argument('--config', type=str, default='config/MGMatting-DIM-100k.toml')
+    parser.add_argument('--checkpoint', type=str, default='checkpoints/MGMatting-DIM-100k/latest_model.pth',
                         help="path of checkpoint")
     parser.add_argument('--image-dir', type=str, default='/export/ccvl12b/qihang/MGMatting/data/Combined_Dataset/Test_set/merged/', help="input image dir")
     parser.add_argument('--mask-dir', type=str, default='/export/ccvl12b/qihang/MGMatting/data/Combined_Dataset/Test_set/trimaps/', help="input mask dir")
     parser.add_argument('--image-ext', type=str, default='.png', help="input image ext")
     parser.add_argument('--mask-ext', type=str, default='.png', help="input mask ext")
     parser.add_argument('--output', type=str, default='predDIM/', help="output dir")
+    parser.add_argument('--guidance-thres', type=int, default=128, help="guidance input threshold")
     parser.add_argument('--post-process', action='store_true', default=False, help='post process to keep the largest connected component')
     
     # Parse configuration
@@ -133,8 +136,8 @@ if __name__ == '__main__':
         image_path = os.path.join(args.image_dir, image_name)
         mask_path = os.path.join(args.mask_dir, image_name.replace(args.image_ext, args.mask_ext))
         print('Image: ', image_path, ' Mask: ', mask_path)
-        image_dict = generator_tensor_dict(image_path, mask_path)
+        image_dict = generator_tensor_dict(image_path, mask_path, args)
 
-        alpha_pred = single_inference(model, image_dict, PP=args.post_process)
+        alpha_pred = single_inference(model, image_dict, post_process=args.post_process)
 
         cv2.imwrite(os.path.join(args.output, image_name), alpha_pred)

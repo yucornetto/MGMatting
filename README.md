@@ -11,6 +11,8 @@ This repository includes the official project of Mask Guided (MG) Matting, prese
 [Johns Hopkins University](https://ccvl.jhu.edu/), [Adobe Research](https://research.adobe.com/)
 
 ## News
+- 22 Apr 2021: Update the code base and pre-trained weights.
+
 - 22 Mar 2021: Our real-world portrait dataset is now publicly avaliable at [here](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/qyu13_jh_edu/EXVd6ga9f9xBjkDv6nPMDtcB_rYaJhnkkS6XGvmzc_6Rfw). Codes (both training and inference) are released, please refer to [code-base](code-base).  
 
 - 15 Dec 2020: Visually comparisons of different fully automatic matting systems are avaliable in [SYSTEM.md](result/SYSTEM.md).
