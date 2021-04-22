@@ -54,6 +54,13 @@ python evaluation_RWP.py --pred-dir PATH_TO_SAVED_RESULTS --label-dir PATH_TO_GR
 which will give the MSE/SAD scores under two settings: Whole Image (measured acorss the whole image) and Detail Only (measured in detail region indicated by detail map only).
 
 ### Model Zoo
+  |DIM dataset                   | MSE | SAD | Grad | Conn |
+  |------------------------------| -------------| -------------|
+  |[MGMatting-DIM-100k](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/qyu13_jh_edu/EblaRdwYHr1Esqbe48HfMT8Bl1y6n1PducNZ2ml3DqSAaw?e=vfbfT0)      | 7.18     |  31.76    |  13.41 | 27.83 |
+
+  |RWP dataset                   | MSE<sub>WholeImage</sub> | SAD<sub>WholeImage</sub> | MSE<sub>Detail</sub> | SAD<sub>Detail</sub> |
+  |------------------------------| -------------| -------------|
+  |[MGMatting-RWP-100k](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/qyu13_jh_edu/Edl8x0nQjy1JhGP6rcV0N-cB654HpmZZa5bwW9rYUvmsJg?e=J3lSba)      | 9.39    |  28.64    | 55.57 | 16.95 |
 
 ### TODO
 
