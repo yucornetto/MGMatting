@@ -365,7 +365,7 @@ class Trainer(object):
                         and CONFIG.local_rank == 0 and (step > start):
                     self.logger.info('Saving the trained models from step {}...'.format(iter))
                     self.save_model("latest_model", step, loss)
-                    if self.test_loss_dict['mse'] < self.best_loss:
+                    if self.test_loss_dict['mse'] is not None and self.test_loss_dict['mse'] < self.best_loss:
                         self.best_loss = self.test_loss_dict['mse']
                         self.save_model("best_model", step, loss)
             else:
