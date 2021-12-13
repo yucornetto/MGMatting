@@ -28,11 +28,19 @@ class SpectralNorm(nn.Module):
         w = getattr(self.module, self.name + "_bar")
 
         height = w.data.shape[0]
-        for _ in range(self.power_iterations):
-            v.data = l2normalize(torch.mv(torch.t(w.view(height,-1).data), u.data))
-            u.data = l2normalize(torch.mv(w.view(height,-1).data, v.data))
-
-        sigma = u.dot(w.view(height, -1).mv(v))
+        if torch.onnx.is_in_onnx_export():
+            for _ in range(self.power_iterations):
+                v.data = l2normalize(torch.matmul(torch.t(w.view(height, -1).data), u.data.view(-1, 1)).view(-1))
+                u.data = l2normalize(torch.matmul(w.view(height, -1).data, v.data.view(-1, 1)).view(-1))
+        else:
+            for _ in range(self.power_iterations):
+                v.data = l2normalize(torch.mv(torch.t(w.view(height, -1).data), u.data))
+                u.data = l2normalize(torch.mv(w.view(height, -1).data, v.data))
+        if torch.onnx.is_in_onnx_export():
+            wv = torch.matmul(w.view(height, -1), v.data.view(-1, 1)).view(-1)
+            sigma = torch.sum(torch.matmul(u, wv))
+        else:
+            sigma = u.dot(w.view(height, -1).mv(v))
         setattr(self.module, self.name, w / sigma.expand_as(w))
 
     def _noupdate_u_v(self):
@@ -41,7 +49,11 @@ class SpectralNorm(nn.Module):
         w = getattr(self.module, self.name + "_bar")
 
         height = w.data.shape[0]
-        sigma = u.dot(w.view(height, -1).mv(v))
+        if torch.onnx.is_in_onnx_export():
+            wv = torch.matmul(w.view(height, -1), v.data.view(-1, 1)).view(-1)
+            sigma = torch.sum(torch.matmul(u, wv))
+        else:
+            sigma = u.dot(w.view(height, -1).mv(v))
         setattr(self.module, self.name, w / sigma.expand_as(w))
 
     def _made_params(self):
