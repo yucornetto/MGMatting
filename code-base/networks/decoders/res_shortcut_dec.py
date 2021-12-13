@@ -32,9 +32,11 @@ class ResShortCut_D_Dec(ResNet_D_Dec):
         x_os4 = (torch.tanh(x_os4) + 1.0) / 2.0
         x_os8 = (torch.tanh(x_os8) + 1.0) / 2.0
 
-        ret['alpha_os1'] = x_os1
-        ret['alpha_os4'] = x_os4
-        ret['alpha_os8'] = x_os8
-
-        return ret
+        if torch.onnx.is_in_onnx_export():
+            return x_os1, x_os4, x_os8
+        else:
+            ret['alpha_os1'] = x_os1
+            ret['alpha_os4'] = x_os4
+            ret['alpha_os8'] = x_os8
+            return ret
 
