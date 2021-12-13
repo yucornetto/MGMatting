@@ -57,6 +57,9 @@ If you find this work or code useful for your research, please use the following
 
 [FBA Matting](https://github.com/MarcoForte/FBA_Matting)
 
+## C++ Inference Demo  
+[MGMatting ONNXRuntime C++](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ort/cv/mg_matting.cpp) 、[MGMatting MNN C++](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/mnn/cv/mnn_mg_matting.cpp) and [MGMatting TNN C++](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/tnn/cv/tnn_mg_matting.cpp) from [lite.ai.toolkit](https://github.com/DefTruth/lite.ai.toolkit).
+
 ## Lisence
 Research only;
 
